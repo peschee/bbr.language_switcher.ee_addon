@@ -77,7 +77,7 @@ class Bbr_langswitch
 		global $DB;
 
 		// Delete old hooks
-		$DB->query("DELETE FROM exp_extensions WHERE class = '". $this->class_name ."'");
+		$DB->query("DELETE FROM exp_extensions WHERE class = '". get_class($this) ."'");
 
 		$hooks = array(
 			'sessions_start'		=> 'extend_language_class',
@@ -408,7 +408,8 @@ class Bbr_langswitch
 * Changed the original extension version using a custom language class as proposed by Brian
 * here http://expressionengine.com/forums/viewthread/120522/
 */
-class System_Messages_Output extends Language
+require_once(PATH_CORE.'core.language'.EXT);
+class Custom_Language_Class extends Language
 {
 	/** -------------------------------------
 	/**	 Fetch a language file
