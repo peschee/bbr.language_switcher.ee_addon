@@ -187,7 +187,8 @@ class Bbr_langswitch
 		if (!isset($IN->global_vars['set_language']))
 		{
 
-			if (isset($IN->global_vars['language'])){
+			if (isset($IN->global_vars['language']))
+			{
 				$glob_lang = $IN->global_vars['language'];
 			}
 			else
@@ -195,7 +196,8 @@ class Bbr_langswitch
 				$glob_lang = (empty($SESS->userdata['language'])) ? $PREFS->ini('deft_lang') : $SESS->userdata['language'];
 			}
 
-			if (isset($IN->global_vars['language_code'])){
+			if (isset($IN->global_vars['language_code']))
+			{
 				$glob_lang_code = $IN->global_vars['language_code'];
 			}
 			else
@@ -205,18 +207,20 @@ class Bbr_langswitch
 			/**
 			 *	is the requested info within the array?
 			 */
-			if (isset($SESS->userdata['member_id'])){
+			if (isset($SESS->userdata['member_id']))
+			{
 				$member_id = $SESS->userdata['member_id'];
 			}
-			else {
+			else
+			{
 				$member_id = 0;
 			}
+
 			/**
 			 *	if this is a logged-in user then get the language stored in session, set language in DB.
 			 */
 			if (is_numeric($member_id) && $member_id > 0)
 			{
-
 				$curr_lang = $SESS->userdata['language'];
 				$deft_lang = $PREFS->ini('deft_lang');
 
@@ -230,7 +234,8 @@ class Bbr_langswitch
 					/**
 					 * Change language only if the current language differs from the selected language
 					 */
-					if ($glob_lang != $curr_lang){
+					if ($glob_lang != $curr_lang)
+					{
 						$DB->query("UPDATE exp_members SET language = '$glob_lang' WHERE member_id = '$member_id'");
 						$IN->global_vars['language'] = $glob_lang;
 						$IN->global_vars['language_code'] = $glob_lang_code;
@@ -239,7 +244,7 @@ class Bbr_langswitch
 					}
 				}
 			}
-			else 
+			else
 			{
 				/**
 				 *	if this is an anonymous (guest) user then get the language stored in cookie
